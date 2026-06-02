@@ -270,7 +270,19 @@
       color: #3a3a38;
     }
 
-    /* Image placeholder */
+    /* ── TIMELINE IMAGE ── */
+    /* Use this for entries WITH a real photo */
+    .tl-img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 420px;
+      max-height: 560px;
+      border: 1px solid var(--line);
+      margin-top: 20px;
+    }
+
+    /* Use this for entries that still need a photo */
     .tl-img-placeholder {
       width: 100%;
       max-width: 420px;
@@ -289,13 +301,8 @@
       gap: 8px;
     }
 
-    .tl-img-placeholder svg {
-      opacity: 0.3;
-    }
-
-    .tl-img-placeholder .img-label {
-      opacity: 0.5;
-    }
+    .tl-img-placeholder svg { opacity: 0.3; }
+    .tl-img-placeholder span { opacity: 0.5; }
 
     /* ── REFLECTION ── */
     .reflection-grid {
@@ -400,12 +407,12 @@
     <h1 class="hero-title">My Journey<br>Through <em>Cadets</em></h1>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <label>Subject</label>
-        <span>[Your Name]</span>
+        <label>Name</label>
+        <span>Brandon Barbour</span>
       </div>
       <div class="hero-meta-item">
         <label>Period</label>
-        <span>[Start Year] – [End Year]</span>
+        <span>2023 – 2026</span>
       </div>
       <div class="hero-meta-item">
         <label>Items</label>
@@ -425,7 +432,7 @@
       I am creating this archive to document and preserve the experiences, growth, and memories from my years as a cadet.
     </p>
     <p class="intro-sub">
-      This archive spans [time period] and covers training, achievements, friendships, and the personal development that came with the program. Items are organized chronologically so the progression of the journey is clear.
+      This archive spans 4 years and covers training, achievements, friendships, and the personal development that came with the program. Items are organized chronologically so the progression of the journey is clear.
     </p>
   </section>
 
@@ -453,7 +460,20 @@
     <p class="section-label">Timeline of Records</p>
     <div class="timeline">
 
-      <!-- Entry 1 -->
+      <!-- ╔══════════════════════════════════════════════════════╗
+           ║  HOW TO ADD AN IMAGE TO ANY ENTRY:                  ║
+           ║                                                      ║
+           ║  OPTION A — You have a photo:                        ║
+           ║    Replace the entire .tl-img-placeholder div with:  ║
+           ║    <img src="Images/your-file.jpg"                   ║
+           ║         alt="describe the photo"                     ║
+           ║         class="tl-img">                              ║
+           ║                                                      ║
+           ║  OPTION B — No photo yet (placeholder stays):        ║
+           ║    Leave the .tl-img-placeholder div as-is.          ║
+           ╚══════════════════════════════════════════════════════╝ -->
+
+      <!-- Entry 1 — HAS A PHOTO -->
       <div class="tl-entry">
         <div class="tl-date">[Date 1]</div>
         <div class="tl-line-col">
@@ -461,23 +481,19 @@
           <div class="tl-connector"></div>
         </div>
         <div class="tl-body">
-          <h3 class="tl-title">Item Title — e.g. Enrollment Day</h3>
-          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <h3 class="tl-title">First Day In Uniform</h3>
+          <p class="tl-caption">Brandon Babrour — First Training Night In Uniform — First Step of a Long Journey</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <!-- PHOTO: swap src for your actual file path -->
+          <img src="Images/cadet-image1.jpg"
+               alt="Photo of younger Brandon wearing uniform for the first time"
+               class="tl-img">
         </div>
       </div>
 
-      <!-- Entry 2 -->
+      <!-- Entry 2 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 2]</div>
         <div class="tl-line-col">
@@ -488,7 +504,7 @@
           <h3 class="tl-title">Item Title — e.g. First Parade</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
           <div class="tl-img-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
@@ -496,12 +512,12 @@
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <path d="M21 15l-5-5L5 21"/>
             </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
+            <span>Photo / Document Placeholder</span>
           </div>
         </div>
       </div>
 
-      <!-- Entry 3 -->
+      <!-- Entry 3 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 3]</div>
         <div class="tl-line-col">
@@ -512,7 +528,7 @@
           <h3 class="tl-title">Item Title — e.g. Summer Camp</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
           <div class="tl-img-placeholder">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
@@ -520,12 +536,12 @@
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <path d="M21 15l-5-5L5 21"/>
             </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
+            <span>Photo / Document Placeholder</span>
           </div>
         </div>
       </div>
 
-      <!-- Entry 4 -->
+      <!-- Entry 4 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 4]</div>
         <div class="tl-line-col">
@@ -536,20 +552,14 @@
           <h3 class="tl-title">Item Title — e.g. Rank Promotion</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <img src="Images/cadet-image2.jpg"
+               class="tl-img">
         </div>
       </div>
 
-      <!-- Entry 5 -->
+      <!-- Entry 5 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 5]</div>
         <div class="tl-line-col">
@@ -560,20 +570,14 @@
           <h3 class="tl-title">Item Title — e.g. Community Event</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <img src="Images/cadet-image3.png"
+               class="tl-img">
         </div>
       </div>
 
-      <!-- Entry 6 -->
+      <!-- Entry 6 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 6]</div>
         <div class="tl-line-col">
@@ -584,20 +588,14 @@
           <h3 class="tl-title">Item Title — e.g. Achievement / Award</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <img src="Images/cadet-image4.jpg"
+               class="tl-img">
         </div>
       </div>
 
-      <!-- Entry 7 -->
+      <!-- Entry 7 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 7]</div>
         <div class="tl-line-col">
@@ -608,20 +606,14 @@
           <h3 class="tl-title">Item Title — e.g. Leadership Role</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <img src="Images/cadet-image5.jpg"
+               class="tl-img">
         </div>
       </div>
 
-      <!-- Entry 8 -->
+      <!-- Entry 8 — PLACEHOLDER -->
       <div class="tl-entry">
         <div class="tl-date">[Date 8]</div>
         <div class="tl-line-col">
@@ -632,16 +624,10 @@
           <h3 class="tl-title">Item Title — e.g. Final Event / Graduation</h3>
           <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
           <p class="tl-text">
-            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful.
           </p>
-          <div class="tl-img-placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="1"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span class="img-label">Photo / Document Placeholder</span>
-          </div>
+          <img src="Images/cadet-image6.jpg"
+               class="tl-img">
         </div>
       </div>
 
@@ -711,7 +697,7 @@
   <!-- FOOTER -->
   <footer>
     <span>Cadet Archive — Personal Collection</span>
-    <span>[Your Name] · [Year]</span>
+    <span>Brandon Barbour · 2026</span>
   </footer>
 
 </body>
