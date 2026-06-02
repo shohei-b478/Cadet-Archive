@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Cadet Journey — Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f5f1;
+      --ink: #1a1a18;
+      --muted: #8a8880;
+      --line: #d8d4cc;
+      --accent: #3d5a47;
+      --cream: #ede9e1;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 72px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 8vw, 112px);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      max-width: 820px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 48px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-meta-item label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-meta-item span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section {
+      padding: 96px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ── INTRO ── */
+    .intro-text {
+      max-width: 640px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .intro-sub {
+      max-width: 480px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── HOW TO VIEW ── */
+    .how-to-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .how-to-card {
+      background: var(--bg);
+      padding: 36px 32px;
+    }
+
+    .how-to-number {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .how-to-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      display: grid;
+      grid-template-columns: 120px 1px 1fr;
+      gap: 0 32px;
+    }
+
+    .tl-entry {
+      display: contents;
+    }
+
+    .tl-date {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 32px 0;
+      text-align: right;
+      align-self: start;
+    }
+
+    .tl-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tl-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 38px;
+      flex-shrink: 0;
+    }
+
+    .tl-connector {
+      flex: 1;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .tl-body {
+      padding: 28px 0 40px;
+    }
+
+    .tl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .tl-caption {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .tl-text {
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 520px;
+      color: #3a3a38;
+    }
+
+    /* Image placeholder */
+    .tl-img-placeholder {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/3;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      gap: 8px;
+    }
+
+    .tl-img-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .tl-img-placeholder .img-label {
+      opacity: 0.5;
+    }
+
+    /* ── REFLECTION ── */
+    .reflection-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .reflection-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--accent);
+      border-left: 2px solid var(--accent);
+      padding-left: 28px;
+    }
+
+    .reflection-body p {
+      font-size: 13px;
+      line-height: 1.85;
+      color: #3a3a38;
+      margin-bottom: 16px;
+    }
+
+    .reflection-body p:last-child { margin-bottom: 0; }
+
+    /* ── SOURCE LIST ── */
+    .source-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 1px solid var(--line);
+    }
+
+    .source-list li {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .source-list li:nth-child(even) { border-right: none; }
+    .source-list li:nth-last-child(-n+2) { border-bottom: none; }
+
+    .source-list .src-id {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 24px 56px; }
+      section { padding: 64px 24px; }
+      .how-to-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 80px 1px 1fr; gap: 0 16px; }
+      .reflection-grid { grid-template-columns: 1fr; gap: 40px; }
+      .source-list { grid-template-columns: 1fr; }
+      .source-list li { border-right: none; }
+      .source-list li:last-child { border-bottom: none; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-title">Cadet Archive</a>
+    <ul class="nav-links">
+      <li><a href="#intro">About</a></li>
+      <li><a href="#how-to">How to View</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+      <li><a href="#sources">Sources</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Personal Archive — Cadet Program</p>
+    <h1 class="hero-title">My Journey<br>Through <em>Cadets</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <label>Subject</label>
+        <span>[Your Name]</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Period</label>
+        <span>[Start Year] – [End Year]</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Items</label>
+        <span>8+ Records</span>
+      </div>
+      <div class="hero-meta-item">
+        <label>Format</label>
+        <span>Digital Archive</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <p class="section-label">Purpose</p>
+    <p class="intro-text">
+      I am creating this archive to document and preserve the experiences, growth, and memories from my years as a cadet.
+    </p>
+    <p class="intro-sub">
+      This archive spans [time period] and covers training, achievements, friendships, and the personal development that came with the program. Items are organized chronologically so the progression of the journey is clear.
+    </p>
+  </section>
+
+  <!-- HOW TO VIEW -->
+  <section id="how-to">
+    <p class="section-label">How to View This Archive</p>
+    <div class="how-to-grid">
+      <div class="how-to-card">
+        <p class="how-to-number">01 —</p>
+        <p>Scroll through the timeline from top to bottom. Each entry represents a moment or milestone in chronological order.</p>
+      </div>
+      <div class="how-to-card">
+        <p class="how-to-number">02 —</p>
+        <p>Each item includes a date, a label, and a short explanation of why it matters to the overall story.</p>
+      </div>
+      <div class="how-to-card">
+        <p class="how-to-number">03 —</p>
+        <p>After the timeline, read the reflection section to understand what this journey meant and what it reveals about growth over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <p class="section-label">Timeline of Records</p>
+    <div class="timeline">
+
+      <!-- Entry 1 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 1]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Enrollment Day</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 2 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 2]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. First Parade</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 3 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 3]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Summer Camp</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 4 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 4]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Rank Promotion</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 5 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 5]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Community Event</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 6 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 6]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Achievement / Award</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 7 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 7]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Leadership Role</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entry 8 -->
+      <div class="tl-entry">
+        <div class="tl-date">[Date 8]</div>
+        <div class="tl-line-col">
+          <div class="tl-dot"></div>
+          <div class="tl-connector"></div>
+        </div>
+        <div class="tl-body">
+          <h3 class="tl-title">Item Title — e.g. Final Event / Graduation</h3>
+          <p class="tl-caption">[Person(s)] — [Context] — [Why it matters]</p>
+          <p class="tl-text">
+            Short paragraph explaining what this item is, how it connects to the main story, and one detail that makes it meaningful. Replace this placeholder text when you add your content.
+          </p>
+          <div class="tl-img-placeholder">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <rect x="3" y="3" width="18" height="18" rx="1"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            <span class="img-label">Photo / Document Placeholder</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section id="reflection">
+    <p class="section-label">Reflection</p>
+    <div class="reflection-grid">
+      <blockquote class="reflection-quote">
+        "This archive represents who I became, not just what I did."
+      </blockquote>
+      <div class="reflection-body">
+        <p>
+          Replace this with your reflection paragraph. Explain what the archive suggests about who you are — your values, growth, relationships, and activities — as revealed through the items collected.
+        </p>
+        <p>
+          Consider: is this an accurate or complete representation of your cadet experience? What is missing? What does a viewer learn about you from these records alone?
+        </p>
+        <p>
+          Finally, connect this to the broader idea of historical records: how do archives shape the way others understand people and communities? What would someone 20 years from now think about cadets if they only had this archive?
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section id="sources">
+    <p class="section-label">Sources & Permissions</p>
+    <ul class="source-list">
+      <li>
+        <p class="src-id">Item 01</p>
+        [Description of item, date, source (e.g. personal collection), permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 02</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 03</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 04</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 05</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 06</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 07</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+      <li>
+        <p class="src-id">Item 08</p>
+        [Description of item, date, source, permission granted by whom]
+      </li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Cadet Archive — Personal Collection</span>
+    <span>[Your Name] · [Year]</span>
+  </footer>
+
+</body>
+</html>
